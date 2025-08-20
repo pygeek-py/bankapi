@@ -1,0 +1,18 @@
+{% load i18n %}
+{% blocktrans %}Hello {{ user.get_full_name|default:user.email }},{% endblocktrans %}
+
+{% blocktrans %}Please use the following verification key to verify your email address for {{ current_site.name }}:{% endblocktrans %}
+
+<strong>{{ key }}</strong>
+
+{% blocktrans %}To verify, send a POST request to:{% endblocktrans %}
+{{ protocol }}://{{ current_site.domain }}/auth/registration/verify-email/
+
+{% blocktrans %}With the following JSON body:{% endblocktrans %}
+<pre>
+{
+  "key": "{{ key }}"
+}
+</pre>
+
+{% blocktrans %}If you did not request this, please ignore this email.{% endblocktrans %}
