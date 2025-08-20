@@ -1,5 +1,6 @@
-setuptools>=68.0.0
-wheel>=0.41.0
+pip>=25.2
+setuptools>=75.0
+wheel
 asgiref==3.7.2
 boto3==1.26.142
 botocore==1.29.142
@@ -18,7 +19,6 @@ django-allauth==0.59.0
 django-cors-headers==4.3.1
 django-environ==0.11.2
 django-filter==23.2
-django-heroku==0.3.1
 django-storages==1.13.2
 django-templated-mail==1.1.1
 djangorestframework==3.14.0
@@ -40,7 +40,6 @@ packaging==23.2
 paystackapi==2.1.1
 phonenumbers==8.13.26
 Pillow==10.1.0
-psycopg2==2.9.6
 psycopg2-binary==2.9.10
 pycparser==2.21
 PyJWT==2.8.0
