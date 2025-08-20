@@ -37,7 +37,6 @@ oauthlib==3.2.2
 packaging==23.2
 paystackapi==2.1.1
 phonenumbers==8.13.26
-Pillow==10.1.0
 psycopg2==2.9.6
 psycopg2-binary==2.9.10
 pycparser==2.21
@@ -55,6 +54,7 @@ s3transfer==0.6.1
 six==1.16.0
 social-auth-app-django==5.4.0
 social-auth-core==4.5.1
+sqlparse==0.5.3
 typing_extensions==4.6.2
 tzdata==2023.3
 uritemplate==4.1.1
