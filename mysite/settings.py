@@ -204,8 +204,11 @@ SWAGGER_SETTINGS = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    # Add your production frontend URL here if needed
 ]
-CORS_ORIGIN_ALLOW_ALL = True
+# Remove or comment out the following line:
+# CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ALLOW_METHODS = [
     'GET',
     'POST',
