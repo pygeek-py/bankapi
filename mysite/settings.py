@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)jz(5=k1z=8*0cb8z8tq7$l*=-_5i&e_!fo0v5@mw&w&7t6#bl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['readerapi.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['bankapi-86yc.onrender.com', '127.0.0.1']
 
 
 # Application definition
