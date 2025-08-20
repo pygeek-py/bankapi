@@ -37,7 +37,6 @@ oauthlib==3.2.2
 packaging==23.2
 paystackapi==2.1.1
 phonenumbers==8.13.26
-psycopg2==2.9.6
 psycopg2-binary==2.9.10
 pycparser==2.21
 PyJWT==2.8.0
