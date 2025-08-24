@@ -206,6 +206,7 @@ SWAGGER_SETTINGS = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://geekbank.onrender.com',
     # Add your production frontend URL here if needed
 ]
 
