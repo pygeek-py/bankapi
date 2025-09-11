@@ -1,0 +1,86 @@
+{
+    "name": "Sepolia Token List",
+    "timestamp": "2025-09-10T00:00:00Z",
+    "tokens": [
+         {
+      "chainId": 11155111,
+      "address": "0x779877A7B0D9C6d1EcF9b849Ae677dD3315835cb2",
+      "name": "Chainlink Token",
+      "symbol": "LINK",
+      "decimals": 18,
+      "logoURI": "https://cryptologos.cc/logos/chainlink-link-logo.png"
+    },
+    {
+      "chainId": 11155111,
+      "address": "0x776b6Fc2Ed15D6Bb5FC32E0c89DE68683118C62a",
+      "name": "Dai Stablecoin",
+      "symbol": "DAI",
+      "decimals": 18,
+      "logoURI": "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.png"
+    },
+    {
+      "chainId": 11155111,
+      "address": "0x7169D38820DfD117C3Fa1F22A697dBA58D90Ba06",
+      "name": "Tether USD",
+      "symbol": "USDT",
+      "decimals": 6,
+      "logoURI": "https://cryptologos.cc/logos/tether-usdt-logo.png"
+    },
+    {
+      "chainId": 11155111,
+      "address": "0x1F9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "name": "Uniswap",
+      "symbol": "UNI",
+      "decimals": 18,
+      "logoURI": "https://cryptologos.cc/logos/uniswap-uni-logo.png"
+    },
+    {
+      "chainId": 11155111,
+      "address": "0xbcf3EA0D122b51666cE682A361AC04e3C7087220",
+      "name": "USDZ (Sepolia)",
+      "symbol": "USDZ",
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "chainId": 11155111,
+      "address": "0xb9Ce031020a930D14a3a74A30336553B38D8425d",
+      "name": "eETH (Sepolia)",
+      "symbol": "eETH",
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "chainId": 11155111,
+      "address": "0xc8326924b14c01E4908C0DE065DdF7409770BfCE",
+      "name": "WORM (Sepolia)",
+      "symbol": "WORM",
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "chainId": 11155111,
+      "address": "0xdf7635A7A9bfb55EeB0A2273657F5FECF8C79e6d",
+      "name": "R2USD (Sepolia)",
+      "symbol": "R2USD",
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "chainId": 11155111,
+      "address": "0x2567Ff4B0C3d54B4f1...",
+      "name": "Ondo NVDA (Sepolia)",
+      "symbol": "NVDA",
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "chainId": 11155111,
+      "address": "0x0000000000000000000000000000000000000000",
+      "name": "Sepolia ETH (Test placeholder)",
+      "symbol": "ETH",
+      "decimals": 18,
+      "logoURI": "https://cryptologos.cc/logos/ethereum-eth-logo.png"
+    }
+    ]
+}

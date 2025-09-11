@@ -13,9 +13,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +34,7 @@ SECRET_KEY = 'django-insecure-)jz(5=k1z=8*0cb8z8tq7$l*=-_5i&e_!fo0v5@mw&w&7t6#bl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bankapi-86yc.onrender.com', '127.0.0.1', 'bankapi-qks3.onrender.com']
+ALLOWED_HOSTS = ['bankapi-86yc.onrender.com', '127.0.0.1', 'bankapi-qks3.onrender.com', 'localhost']
 
 
 # Application definition
@@ -100,7 +107,7 @@ DATABASES = {
 }
 
 DATABASES["default"] = dj_database_url.parse(
-    "postgres://neondb_owner:npg_ehEvR27LADrM@ep-lingering-boat-adqbk5xp-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&connect_timeout=20"
+    "postgresql://neondb_owner:npg_ihFdTVf6NG8n@ep-jolly-cherry-ad7v2bxt-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require"
 )
 
 
@@ -180,6 +187,8 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "core-app-auth",
     "JWT_AUTH_REFRESH_COOKIE": "core-refresh-token",
     "REGISTER_SERIALIZER": "api.serializers.CustomRegisterSerializer",
+    "LOGIN_SERIALIZER": "api.serializers.CustomLoginSerializer",
+    "USER_DETAILS_SERIALIZER": "api.serializers.CustomUserSerializer",
 }
 
 ACCOUNT_EMAIL_CONFIRMATION_URL = "auth/registration/verify-email/{key}/"
@@ -211,3 +220,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+AUTH_USER_MODEL = 'api.CustomUser'
+
+ENCRYPTION_KEY = os.getenv("DJANGO_ENCRYPTION_KEY")
