@@ -1,5 +1,7 @@
 aiohappyeyeballs==2.6.1
 aiohttp==3.12.15
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.15
 aiosignal==1.4.0
 annotated-types==0.7.0
 asgiref==3.7.2
@@ -82,7 +84,7 @@ six==1.16.0
 social-auth-app-django==5.4.0
 social-auth-core==4.5.1
 sqlparse==0.5.3
-setuptools>=82.0.1
+setuptools>=65.0
 toolz==1.0.0
 types-requests==2.32.4.20250809
 typing-inspection==0.4.1
