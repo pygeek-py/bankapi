@@ -50,11 +50,14 @@ def withdraw_token(token_address, recipient, user, amount, decimals=18):
         parsed_amount = int(amount * (10 ** decimals))
 
         print(parsed_amount)
-        
+
+        checksum_address = Web3.to_checksum_address(recipient)
+        token_address = Web3.to_checksum_address(token_address)
+        user_address = Web3.to_checksum_address(user)
         tx = vault.functions.withdraw(
             token_address,
-            recipient,
-            user,
+            checksum_address,
+            user_address,
             parsed_amount
         ).build_transaction({
             "from": backend_address,
@@ -80,7 +83,10 @@ def transfer_within(token_address, from_address, to_address, amount, decimals=18
         parsed_amount = int(amount * (10 ** decimals))
 
         print(parsed_amount)
-
+        
+        from_address = Web3.to_checksum_address(from_address)
+        token_address = Web3.to_checksum_address(token_address)
+        to_address = Web3.to_checksum_address(to_address)
         tx = vault.functions.transferWithin(
             token_address,
             from_address,

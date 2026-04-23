@@ -107,7 +107,7 @@ DATABASES = {
 }
 
 DATABASES["default"] = dj_database_url.parse(
-    "postgresql://neondb_owner:npg_ihFdTVf6NG8n@ep-jolly-cherry-ad7v2bxt-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require"
+    "postgresql://neondb_owner:npg_nryvOiLK7w2s@ep-autumn-recipe-amlf043g-pooler.c-5.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require"
 )
 
 
