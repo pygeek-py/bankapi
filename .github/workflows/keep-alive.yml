@@ -1,0 +1,29 @@
+name: Keep Render services awake
+
+# Render's free tier spins a service down after ~15 minutes of no traffic,
+# so the next visitor sees Render's own build/spin-up screen instead of the
+# app. This pings both the backend and frontend often enough that they
+# never sit idle long enough to spin down.
+#
+# Note: GitHub automatically disables scheduled workflows on a repo after
+# 60 days with no commits to it. Keep committing to either repo now and
+# then, or re-enable it manually from the Actions tab if it gets paused.
+
+"on":
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping backend (bankapi)
+        run: |
+          curl -s -o /dev/null -w "backend: %{http_code} in %{time_total}s\n" \
+            --max-time 90 https://bankapi-qks3.onrender.com/swagger/
+
+      - name: Ping frontend (GeekBank-ii)
+        run: |
+          curl -s -o /dev/null -w "frontend: %{http_code} in %{time_total}s\n" \
+            --max-time 90 https://geekbank.onrender.com/
