@@ -16,12 +16,10 @@ import dj_database_url
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables from .env file
 load_dotenv(BASE_DIR / '.env')
 
 
@@ -79,7 +77,6 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [BASE_DIR / 'templates'],
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -107,7 +104,7 @@ DATABASES = {
 }
 
 DATABASES["default"] = dj_database_url.parse(
-    "postgresql://neondb_owner:npg_nryvOiLK7w2s@ep-autumn-recipe-amlf043g-pooler.c-5.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require"
+    "postgresql://neondb_owner:npg_VQ34UfTtxAZR@ep-fragrant-queen-awr7ypd3-pooler.c-12.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require"
 )
 
 
@@ -163,8 +160,10 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-"can also be console instead of smtp"
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Defaults to SMTP (used in production / on Render). For local development you can
+# set EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend to print emails
+# to the console instead of sending them.
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

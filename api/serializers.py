@@ -10,6 +10,11 @@ from cryptography.fernet import Fernet
 from django.conf import settings
 from base64 import urlsafe_b64encode
 
+class WaitlistSerializer(serializers.Serializer):
+    first_name = serializers.CharField(max_length=150)
+    last_name = serializers.CharField(max_length=150)
+    email = serializers.EmailField()
+
 class WithdrawSerializer(serializers.Serializer):
     token_address = serializers.CharField()
     amount = serializers.FloatField()

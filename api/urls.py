@@ -7,6 +7,7 @@ urlpatterns = [
     path('blogposts/', views.BlogPostListCreate.as_view(), name='blogpost-list-create'),
     path('blogposts/<int:pk>/', views.BlogPostRetriveUpdateDestroy.as_view(), name='update'),
     path('blogposts/list/', views.BlogPostList.as_view(), name='blogpost-list'),
+    path('waitlist/', views.WaitlistView.as_view(), name='waitlist'),
     path('verify-email/', EmailVerificationView.as_view(), name='verify-email'),
     path('account/inactive/', views.account_inactive, name='account_inactive'),
     path('withdraw/', views.withdraw_view, name='withdraw'),

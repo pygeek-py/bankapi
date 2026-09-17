@@ -2,7 +2,6 @@ from web3 import Web3
 import os
 from dotenv import load_dotenv
 import json
-from django.http import JsonResponse
 
 load_dotenv()
 
@@ -49,8 +48,6 @@ def withdraw_token(token_address, recipient, user, amount, decimals=18):
     try:
         parsed_amount = int(amount * (10 ** decimals))
 
-        print(parsed_amount)
-
         checksum_address = Web3.to_checksum_address(recipient)
         token_address = Web3.to_checksum_address(token_address)
         user_address = Web3.to_checksum_address(user)
@@ -82,8 +79,6 @@ def transfer_within(token_address, from_address, to_address, amount, decimals=18
     try:
         parsed_amount = int(amount * (10 ** decimals))
 
-        print(parsed_amount)
-        
         from_address = Web3.to_checksum_address(from_address)
         token_address = Web3.to_checksum_address(token_address)
         to_address = Web3.to_checksum_address(to_address)

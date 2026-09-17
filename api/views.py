@@ -1,18 +1,19 @@
-from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.response import Response
-from .models import BlogPost, CustomUser
-from .serializers import BlogPostSerializer, UserSerializer, EmailVerificationSerializer, WithdrawSerializer, TransferSerializer
+from .models import BlogPost, CustomUser, Waitlist
+from .serializers import BlogPostSerializer, UserSerializer, EmailVerificationSerializer, WithdrawSerializer, TransferSerializer, WaitlistSerializer
 from rest_framework.views import APIView
 from drf_yasg.utils import swagger_auto_schema
 from django.contrib.auth import get_user_model
-from rest_framework import permissions, serializers
+from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from .services.blockchain import withdraw_token, transfer_within, get_all_user_balances
 from django.http import JsonResponse
+from django.conf import settings
+from django.core.mail import send_mail
 
-# Create your views here.
+
 class BlogPostListCreate(generics.ListCreateAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
@@ -51,6 +52,49 @@ class BlogPostList(APIView):
 
 
 
+class WaitlistView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    @swagger_auto_schema(request_body=WaitlistSerializer)
+    def post(self, request):
+        serializer = WaitlistSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        email = data['email'].strip().lower()
+        entry, created = Waitlist.objects.get_or_create(
+            email=email,
+            defaults={
+                'first_name': data['first_name'].strip(),
+                'last_name': data['last_name'].strip(),
+            },
+        )
+        if created:
+            self._send_confirmation(entry)
+            return Response(
+                {'detail': "You're on the list! We'll be in touch soon."},
+                status=status.HTTP_201_CREATED,
+            )
+        return Response(
+            {'detail': "This email is already on the waitlist."},
+            status=status.HTTP_200_OK,
+        )
+
+    def _send_confirmation(self, entry):
+        # Sent from the backend (server-side) using the project's existing email
+        # config, so it works the same locally and on Render. fail_silently keeps
+        # a mail hiccup from failing the signup.
+        send_mail(
+            'Welcome to the GeekPay waitlist',
+            f"Hi {entry.first_name},\n\n"
+            "Thanks for joining the GeekPay waitlist! You're all set, and "
+            "we'll email you as soon as we launch.\n\n"
+            "The GeekPay Team",
+            settings.DEFAULT_FROM_EMAIL,
+            [entry.email],
+            fail_silently=True,
+        )
+
+
 # Email verification endpoint
 class EmailVerificationView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -83,8 +127,6 @@ def withdraw_view(request):
 
     user_address = user.wallet_address
 
-    print(user_address, amount, token_address)
-
     result = withdraw_token(
         token_address=token_address,
         recipient=recipient,
@@ -105,8 +147,6 @@ def transfer_view(request):
     to_address = request.data.get("to_address")
 
     user_address = user.wallet_address
-
-    print(user_address, amount, token_address)
 
     result = transfer_within(
         token_address=token_address,
